@@ -10,17 +10,24 @@ import UIKit
 
 class TimersTableViewController: UITableViewController {
   
-  var numberOfTimers: Int!
   var timers: [Time] = TimeDataManager.sharedInstance.fetchTimes()
+  var cellLabelTimers: [NSTimer]!
   
   override func viewDidLoad() {
-    numberOfTimers = 1
+    cellLabelTimers = []
     super.viewDidLoad()
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     tableView.reloadData()
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    for cellLabelTimer in cellLabelTimers {
+      cellLabelTimer.invalidate()
+    }
+    cellLabelTimers = []
   }
   
   override func didReceiveMemoryWarning() {
@@ -41,6 +48,8 @@ class TimersTableViewController: UITableViewController {
     cell.taskNameLabel.delegate = cell
     cell.timeEntity = timers[indexPath.row]
     cell.reflectCurrentState()
+    
+    cellLabelTimers.append(cell.timeLabelUpdater)
     
     return cell
   }

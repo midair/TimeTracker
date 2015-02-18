@@ -38,9 +38,13 @@ class TimerCell: UITableViewCell, UITextFieldDelegate {
     
     var totalTimeString: String
     var timeInSeconds = 0.0
-    
+
     if self.checkIfSameDay(timeEntity.startTime) {
-      timeInSeconds = timeEntity.totalTime + timeEntity.startTime.timeIntervalSinceNow
+      if timeEntity.running {
+        timeInSeconds = timeEntity.totalTime + timeEntity.startTime.timeIntervalSinceNow
+      } else {
+        timeInSeconds = timeEntity.totalTime
+      }
       totalTimeString = convertSecondsToString(timeInSeconds)
     } else {
       totalTimeString = "00:00:00"
@@ -72,8 +76,12 @@ class TimerCell: UITableViewCell, UITextFieldDelegate {
     if (timeEntity.running) {
       timeLabelUpdater = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateTimeLabel"), userInfo: nil, repeats: true)
     } else {
-      timeLabelUpdater.invalidate()
+      self.cancelLabelUpdater()
     }
+  }
+  
+  func cancelLabelUpdater() {
+    timeLabelUpdater.invalidate()
   }
 
   //  MARK: Time Converter
@@ -135,16 +143,9 @@ class TimerCell: UITableViewCell, UITextFieldDelegate {
 
   func reflectCurrentState() {
     self.showSelectedState()
+    self.updateTimeLabel()
     self.setLabelUpdater()
     self.showCurrentName()
   }
-  
-  //  func mustSaveNameAlert() {
-  //    var alert = UIAlertController(title: "Unnamed Task", message: "Name your task before starting the stopwatch!", preferredStyle: UIAlertControllerStyle.Alert)
-  //    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-  //    self.presentViewController(alert, animated: true, completion: nil)
-  //  }
-
-  
   
 }
