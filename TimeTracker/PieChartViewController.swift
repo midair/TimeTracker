@@ -10,17 +10,25 @@ import QuartzCore
 import UIKit
 
 
-
 class PieChartViewController: UIViewController {
   
   var pieChart: PieChart!
+  var pieRefresher: NSTimer!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.makePieChart()
     self.view.addSubview(pieChart.getPieChartView())
-    self.addPieSlices()
-    self.view.reloadInputViews()
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    pieRefresher = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("addPieSlices"), userInfo: nil, repeats: true)
+    
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    pieRefresher.invalidate()
+    
   }
   
   func makePieChart() {
@@ -32,8 +40,31 @@ class PieChartViewController: UIViewController {
   }
   
   func addPieSlices() {
-    pieChart.addSlice(25)
+    pieChart.currentColor = 0
+    var timers = TimeDataManager.sharedInstance.fetchTimes()
+    var totalOverallTime = 0.0
+    for timer in timers {
+      totalOverallTime += getTotalTime(timer)
+    }
+    for timer in timers {
+      let percentage = Float(getTotalTime(timer)) / Float(totalOverallTime) * 100.0
+      let time = timer as Time
+      println(time.taskName)
+      println(percentage)
+      pieChart.addSlice(percentage)
+    }
   }
   
-
+  func getTotalTime(time: Time) -> Double {
+    var timeInSeconds: Double
+    if time.running {
+      timeInSeconds = time.totalTime + time.startTime.timeIntervalSinceNow
+    } else {
+      timeInSeconds = time.totalTime
+    }
+    return timeInSeconds
+  }
+  
+  
+  
 }

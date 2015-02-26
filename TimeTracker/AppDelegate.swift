@@ -106,6 +106,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           }
       }
   }
+  
+  
+  // MARK: WatchKit
+  
+  func application(application: UIApplication!,
+    handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]!,
+    reply: (([NSObject : AnyObject]!) -> Void)!) {
+      var times:[String] = []
+      for time in TimeDataManager.sharedInstance.fetchTimes() {
+        times.append(time.taskName)
+      }
+      reply(["time":times])
+  }
 
 }
 

@@ -51,6 +51,10 @@ class TimersTableViewController: UITableViewController {
     
     cellLabelTimers.append(cell.timeLabelUpdater)
     
+    if cell.taskNameLabel.text == "" {
+      cell.taskNameLabel.becomeFirstResponder()
+    }
+    
     return cell
   }
   

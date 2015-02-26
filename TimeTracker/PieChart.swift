@@ -16,9 +16,12 @@ class PieChart {
   var circleRadius: CGFloat!
   var fullPieView: UIView
   var currentAngle: Float
+  var colors = [UIColor.redColor(), UIColor.blueColor(), UIColor.yellowColor(), UIColor.greenColor(), UIColor.cyanColor(), UIColor.purpleColor()]
+  var currentColor: Int!
   
   init(containerViewHeight: CGFloat, containerViewWidth:CGFloat, pieRadius: CGFloat) {
     currentAngle = 0
+    currentColor = 0
     viewHeight = containerViewHeight
     viewWidth = containerViewWidth
     circleRadius = pieRadius
@@ -41,13 +44,15 @@ class PieChart {
     let sliceAngleInRadians = 2 * percentage / 100
     
     self.applyMask(sliceHolderView, startingAngleInRadians: currentAngle, sliceAngleInRadians: sliceAngleInRadians, circleRadius: Float(circleRadius))
+    currentAngle += sliceAngleInRadians
   }
   
   func makeNewPieSlice(color: UIColor) -> UIView {
     
     var sliceView = UIView(frame: CGRectMake(viewWidth/2.0-circleRadius, viewHeight/2.0*0.95-circleRadius, circleRadius*2, circleRadius*2))
     sliceView.layer.cornerRadius = circleRadius
-    sliceView.backgroundColor = UIColor.blueColor()
+    sliceView.backgroundColor = colors[currentColor]
+    currentColor = currentColor+1
     
     var fullView = UIView(frame: CGRectMake(0, 0, viewWidth, viewHeight))
     
@@ -60,7 +65,6 @@ class PieChart {
     
     var startingAngle = CGFloat(startingAngleInRadians * π)
     var sliceAngle = CGFloat(sliceAngleInRadians * π)
-    
     
     //Build triangular path
     var path = UIBezierPath()
@@ -94,6 +98,6 @@ class PieChart {
     let y = point.y + offsetPoint.y
     return CGPointMake(x, y)
   }
-    
+  
   
 }

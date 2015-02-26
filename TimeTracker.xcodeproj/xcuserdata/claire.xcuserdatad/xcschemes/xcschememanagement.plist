@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Glance - TimeTracker WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Notification - TimeTracker WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>TimeTracker WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>TimeTracker.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>7E606F5D1A8AB99A00E62F7F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7EAD37AB1A9F933900D4E0EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
