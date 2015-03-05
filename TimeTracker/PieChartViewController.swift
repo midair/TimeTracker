@@ -18,10 +18,11 @@ class PieChartViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.makePieChart()
-    self.view.addSubview(pieChart.getPieChartView())
+    self.view.layer.addSublayer(pieChart.getPieChartLayer())
   }
   
   override func viewWillAppear(animated: Bool) {
+    self.addPieSlices()
     pieRefresher = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("addPieSlices"), userInfo: nil, repeats: true)
     
   }
@@ -49,8 +50,6 @@ class PieChartViewController: UIViewController {
     for timer in timers {
       let percentage = Float(getTotalTime(timer)) / Float(totalOverallTime) * 100.0
       let time = timer as Time
-      println(time.taskName)
-      println(percentage)
       pieChart.addSlice(percentage)
     }
   }

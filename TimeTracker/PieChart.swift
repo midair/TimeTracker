@@ -14,9 +14,9 @@ class PieChart {
   var viewHeight: CGFloat!
   var viewWidth: CGFloat!
   var circleRadius: CGFloat!
-  var fullPieView: UIView
+  var fullPieLayer: CALayer
   var currentAngle: Float
-  var colors = [UIColor.redColor(), UIColor.blueColor(), UIColor.yellowColor(), UIColor.greenColor(), UIColor.cyanColor(), UIColor.purpleColor()]
+  var colors = [UIColor.redColor().CGColor, UIColor.blueColor().CGColor, UIColor.yellowColor().CGColor, UIColor.greenColor().CGColor, UIColor.cyanColor().CGColor, UIColor.purpleColor().CGColor]
   var currentColor: Int!
   
   init(containerViewHeight: CGFloat, containerViewWidth:CGFloat, pieRadius: CGFloat) {
@@ -25,42 +25,45 @@ class PieChart {
     viewHeight = containerViewHeight
     viewWidth = containerViewWidth
     circleRadius = pieRadius
-    fullPieView = UIView(frame: CGRectMake(0, 0, CGFloat(viewWidth), CGFloat(viewHeight)))
+    fullPieLayer = CALayer()
   }
   
-  func getPieChartView() -> UIView {
-    var circleView = UIView(frame: CGRectMake(viewWidth/2.0-circleRadius, viewHeight/2.0*0.95-circleRadius,circleRadius*2, circleRadius*2))
-    circleView.layer.cornerRadius = circleRadius
-    circleView.backgroundColor = UIColor.greenColor()
-    self.fullPieView.addSubview(circleView)
+  func getPieChartLayer() -> CALayer {
+//    var circleLayer = CALayer()
+//    circleLayer.frame = CGRectMake(viewWidth/2.0-circleRadius, viewHeight/2.0*0.95-circleRadius,circleRadius*2, circleRadius*2)
+//    circleLayer.cornerRadius = circleRadius
+//    circleLayer.backgroundColor = UIColor.greenColor().CGColor
+//    self.fullPieLayer.addSublayer(circleLayer)
     
-    return fullPieView
+    return fullPieLayer
   }
+
   
   func addSlice(percentage: Float) {
-    var sliceHolderView = makeNewPieSlice(UIColor.blueColor())
-    self.fullPieView.addSubview(sliceHolderView)
+    var sliceHolderLayer = makeNewPieSlice()
+    self.fullPieLayer.addSublayer(sliceHolderLayer)
     
     let sliceAngleInRadians = 2 * percentage / 100
     
-    self.applyMask(sliceHolderView, startingAngleInRadians: currentAngle, sliceAngleInRadians: sliceAngleInRadians, circleRadius: Float(circleRadius))
+    self.applyMask(sliceHolderLayer, startingAngleInRadians: currentAngle, sliceAngleInRadians: sliceAngleInRadians, circleRadius: Float(circleRadius))
     currentAngle += sliceAngleInRadians
   }
   
-  func makeNewPieSlice(color: UIColor) -> UIView {
+  func makeNewPieSlice() -> CALayer {
     
-    var sliceView = UIView(frame: CGRectMake(viewWidth/2.0-circleRadius, viewHeight/2.0*0.95-circleRadius, circleRadius*2, circleRadius*2))
-    sliceView.layer.cornerRadius = circleRadius
-    sliceView.backgroundColor = colors[currentColor]
+    var sliceLayer = CALayer()
+    sliceLayer.frame = CGRectMake(viewWidth/2.0-circleRadius, viewHeight/2.0*0.95-circleRadius, circleRadius*2, circleRadius*2)
+    sliceLayer.cornerRadius = circleRadius
+    sliceLayer.backgroundColor = colors[currentColor]
     currentColor = currentColor+1
     
-    var fullView = UIView(frame: CGRectMake(0, 0, viewWidth, viewHeight))
+    var fullLayer = CALayer()
     
-    fullView.addSubview(sliceView)
-    return fullView
+    fullLayer.addSublayer(sliceLayer)
+    return fullLayer
   }
   
-  func applyMask(sliceHolderView:UIView, startingAngleInRadians: Float, sliceAngleInRadians: Float, circleRadius: Float) {
+  func applyMask(sliceHolderLayer:CALayer, startingAngleInRadians: Float, sliceAngleInRadians: Float, circleRadius: Float) {
     let π = Float(3.14)
     
     var startingAngle = CGFloat(startingAngleInRadians * π)
@@ -82,9 +85,9 @@ class PieChart {
     path.closePath()
     
     var mask = CAShapeLayer()
-    mask.frame = fullPieView.frame
+    mask.frame = fullPieLayer.frame
     mask.path = path.CGPath
-    sliceHolderView.layer.mask = mask
+    sliceHolderLayer.mask = mask
   }
   
   func extendLengthOfVector(x:CGFloat, y:CGFloat, circleRadius: Float)-> CGPoint {

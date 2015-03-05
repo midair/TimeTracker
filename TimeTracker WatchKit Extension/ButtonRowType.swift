@@ -12,8 +12,20 @@ class ButtonRowType: NSObject {
   
   @IBOutlet var taskButton: WKInterfaceButton!
   
+  var selected: Bool = false
+  
+  func showSelectedState() {
+    if self.selected {
+      taskButton.setBackgroundColor(UIColor.redColor())
+    } else {
+      taskButton.setBackgroundColor(UIColor.grayColor())
+    }
+  }
   
   @IBAction func taskButtonPressed() {
-    taskButton.setBackgroundColor(UIColor.blueColor())
+    self.selected = !self.selected
+    showSelectedState()
   }
+  
+  
 }

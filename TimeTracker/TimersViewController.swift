@@ -1,5 +1,5 @@
 //
-//  TimersTableViewController.swift
+//  TimersViewController.swift
 //  TimeTracker
 //
 //  Created by Claire on 2/12/15.
@@ -8,13 +8,19 @@
 
 import UIKit
 
-class TimersTableViewController: UITableViewController {
+class TimersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   var timers: [Time] = TimeDataManager.sharedInstance.fetchTimes()
   var cellLabelTimers: [NSTimer]!
   
+  @IBOutlet var tableView: UITableView!
+  
   override func viewDidLoad() {
     cellLabelTimers = []
+    self.tableView.allowsSelection = false
+    self.tableView.delegate = self
+    self.tableView.dataSource = self
+    self.tableView.tableFooterView = UIView(frame: CGRectZero)
     super.viewDidLoad()
   }
   
@@ -37,12 +43,12 @@ class TimersTableViewController: UITableViewController {
   
   // MARK: Table View data source
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // Return the number of rows in the section.
     return timers.count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     var cell = tableView.dequeueReusableCellWithIdentifier("TimerCell", forIndexPath: indexPath) as TimerCell
     
     cell.taskNameLabel.delegate = cell
@@ -58,12 +64,15 @@ class TimersTableViewController: UITableViewController {
     return cell
   }
   
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    var deletedTime = timers.removeAtIndex(indexPath.row)
+  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    var cell = self.tableView.cellForRowAtIndexPath(indexPath) as TimerCell
+    cell.cancelLabelUpdater()
+    var deletedTime = self.timers.removeAtIndex(indexPath.row)
+    self.cellLabelTimers.removeAtIndex(indexPath.row)
     TimeDataManager.sharedInstance.deleteTime(deletedTime)
     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
   }
-
+  
   // MARK: Timer Button
   
   @IBAction func addTimer(sender: AnyObject) {
@@ -71,6 +80,6 @@ class TimersTableViewController: UITableViewController {
     timers.append(time)
     self.tableView.reloadData()
   }
-
+  
   
 }

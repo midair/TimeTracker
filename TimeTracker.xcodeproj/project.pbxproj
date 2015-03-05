@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E5CDB901AA7796A00BE3BA1 /* TimersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CDB8F1AA7796A00BE3BA1 /* TimersViewController.swift */; };
 		7E606F4C1A8AB99A00E62F7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E606F4B1A8AB99A00E62F7F /* AppDelegate.swift */; };
 		7E606F4F1A8AB99A00E62F7F /* TimeTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E606F4D1A8AB99A00E62F7F /* TimeTracker.xcdatamodeld */; };
 		7E606F541A8AB99A00E62F7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E606F521A8AB99A00E62F7F /* Main.storyboard */; };
 		7E606F561A8AB99A00E62F7F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E606F551A8AB99A00E62F7F /* Images.xcassets */; };
 		7E606F591A8AB99A00E62F7F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E606F571A8AB99A00E62F7F /* LaunchScreen.xib */; };
 		7E606F651A8AB99A00E62F7F /* TimeTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E606F641A8AB99A00E62F7F /* TimeTrackerTests.swift */; };
+		7E8BCDB61AA8EA1D00A7A05B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8BCDB51AA8EA1D00A7A05B /* TabBarController.swift */; };
 		7EA5CDDA1A9FB39000B5EA0C /* WatchDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5CDD91A9FB39000B5EA0C /* WatchDataManager.swift */; };
+		7EA5CDDC1A9FE46000B5EA0C /* WatchButtonDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5CDDB1A9FE46000B5EA0C /* WatchButtonDataManager.swift */; };
 		7EAD37A51A9F933900D4E0EA /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37A41A9F933900D4E0EA /* InterfaceController.swift */; };
 		7EAD37A71A9F933900D4E0EA /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD37A61A9F933900D4E0EA /* NotificationController.swift */; };
 		7EAD37A91A9F933900D4E0EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EAD37A81A9F933900D4E0EA /* Images.xcassets */; };
@@ -23,7 +26,6 @@
 		7EAD37BA1A9F933900D4E0EA /* TimeTracker WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7EAD379F1A9F933900D4E0EA /* TimeTracker WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7EC6EF361A8D3543001F0188 /* TimeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC6EF351A8D3543001F0188 /* TimeDataManager.swift */; };
 		7EC6EF3C1A8D4FF8001F0188 /* TimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC6EF3B1A8D4FF8001F0188 /* TimerCell.swift */; };
-		7EC6EF401A8D513E001F0188 /* TimersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC6EF3F1A8D513E001F0188 /* TimersTableViewController.swift */; };
 		7EC6EF441A92A24B001F0188 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC6EF431A92A24B001F0188 /* Time.swift */; };
 		7EC7D9C81A9FA8F800AD2E66 /* ButtonRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7D9C71A9FA8F800AD2E66 /* ButtonRowType.swift */; };
 		7EFECA981A93CE75004F89FF /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFECA971A93CE75004F89FF /* PieChartViewController.swift */; };
@@ -69,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7E5CDB8F1AA7796A00BE3BA1 /* TimersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersViewController.swift; sourceTree = "<group>"; };
 		7E606F461A8AB99A00E62F7F /* TimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E606F4A1A8AB99A00E62F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E606F4B1A8AB99A00E62F7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +82,9 @@
 		7E606F5E1A8AB99A00E62F7F /* TimeTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E606F631A8AB99A00E62F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E606F641A8AB99A00E62F7F /* TimeTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackerTests.swift; sourceTree = "<group>"; };
+		7E8BCDB51AA8EA1D00A7A05B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		7EA5CDD91A9FB39000B5EA0C /* WatchDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchDataManager.swift; sourceTree = "<group>"; };
+		7EA5CDDB1A9FE46000B5EA0C /* WatchButtonDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchButtonDataManager.swift; sourceTree = "<group>"; };
 		7EAD379F1A9F933900D4E0EA /* TimeTracker WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TimeTracker WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAD37A21A9F933900D4E0EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EAD37A31A9F933900D4E0EA /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -92,7 +97,6 @@
 		7EAD37B61A9F933900D4E0EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7EC6EF351A8D3543001F0188 /* TimeDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeDataManager.swift; sourceTree = "<group>"; };
 		7EC6EF3B1A8D4FF8001F0188 /* TimerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerCell.swift; sourceTree = "<group>"; };
-		7EC6EF3F1A8D513E001F0188 /* TimersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersTableViewController.swift; sourceTree = "<group>"; };
 		7EC6EF431A92A24B001F0188 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		7EC7D9C71A9FA8F800AD2E66 /* ButtonRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRowType.swift; sourceTree = "<group>"; };
 		7EFECA971A93CE75004F89FF /* PieChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E5CDB8A1AA772CA00BE3BA1 /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				7EC6EF351A8D3543001F0188 /* TimeDataManager.swift */,
+				7EC6EF431A92A24B001F0188 /* Time.swift */,
+			);
+			name = Time;
+			sourceTree = "<group>";
+		};
 		7E606F3D1A8AB99A00E62F7F = {
 			isa = PBXGroup;
 			children = (
@@ -149,11 +162,11 @@
 		7E606F481A8AB99A00E62F7F /* TimeTracker */ = {
 			isa = PBXGroup;
 			children = (
-				7EC6EF3F1A8D513E001F0188 /* TimersTableViewController.swift */,
-				7EC6EF351A8D3543001F0188 /* TimeDataManager.swift */,
-				7EC6EF431A92A24B001F0188 /* Time.swift */,
+				7E5CDB8F1AA7796A00BE3BA1 /* TimersViewController.swift */,
+				7E5CDB8A1AA772CA00BE3BA1 /* Time */,
 				7EC6EF3B1A8D4FF8001F0188 /* TimerCell.swift */,
 				7E606F4B1A8AB99A00E62F7F /* AppDelegate.swift */,
+				7E8BCDB51AA8EA1D00A7A05B /* TabBarController.swift */,
 				7EA5CDD91A9FB39000B5EA0C /* WatchDataManager.swift */,
 				7E606F521A8AB99A00E62F7F /* Main.storyboard */,
 				7EFECA971A93CE75004F89FF /* PieChartViewController.swift */,
@@ -196,6 +209,7 @@
 			children = (
 				7EC7D9C71A9FA8F800AD2E66 /* ButtonRowType.swift */,
 				7EAD37A41A9F933900D4E0EA /* InterfaceController.swift */,
+				7EA5CDDB1A9FE46000B5EA0C /* WatchButtonDataManager.swift */,
 				7EAD37A61A9F933900D4E0EA /* NotificationController.swift */,
 				7EAD37A81A9F933900D4E0EA /* Images.xcassets */,
 				7EAD37A11A9F933900D4E0EA /* Supporting Files */,
@@ -391,14 +405,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EC6EF401A8D513E001F0188 /* TimersTableViewController.swift in Sources */,
 				7EA5CDDA1A9FB39000B5EA0C /* WatchDataManager.swift in Sources */,
 				7EFECA9A1A94F8F2004F89FF /* PieChart.swift in Sources */,
 				7EC6EF361A8D3543001F0188 /* TimeDataManager.swift in Sources */,
+				7E8BCDB61AA8EA1D00A7A05B /* TabBarController.swift in Sources */,
 				7EC6EF441A92A24B001F0188 /* Time.swift in Sources */,
 				7E606F4C1A8AB99A00E62F7F /* AppDelegate.swift in Sources */,
 				7E606F4F1A8AB99A00E62F7F /* TimeTracker.xcdatamodeld in Sources */,
 				7EFECA981A93CE75004F89FF /* PieChartViewController.swift in Sources */,
+				7E5CDB901AA7796A00BE3BA1 /* TimersViewController.swift in Sources */,
 				7EC6EF3C1A8D4FF8001F0188 /* TimerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +433,7 @@
 				7EC7D9C81A9FA8F800AD2E66 /* ButtonRowType.swift in Sources */,
 				7EAD37A71A9F933900D4E0EA /* NotificationController.swift in Sources */,
 				7EAD37A51A9F933900D4E0EA /* InterfaceController.swift in Sources */,
+				7EA5CDDC1A9FE46000B5EA0C /* WatchButtonDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

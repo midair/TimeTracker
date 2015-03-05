@@ -14,6 +14,7 @@ class TimerCell: UITableViewCell, UITextFieldDelegate {
   
   var timeEntity: Time!
   var timeLabelUpdater = NSTimer()
+  var runningToggled = false
   
   @IBOutlet var taskNameLabel: UITextField!
   @IBOutlet var timerLabel: UILabel!
@@ -28,6 +29,11 @@ class TimerCell: UITableViewCell, UITextFieldDelegate {
     return false
   }
   
+  func textFieldDidChange() {
+    timeEntity.taskName = self.taskNameLabel.text
+    TimeDataManager.sharedInstance.saveContext()
+  }
+  
   func showCurrentName() {
     taskNameLabel.text = timeEntity.taskName
   }
@@ -35,7 +41,6 @@ class TimerCell: UITableViewCell, UITextFieldDelegate {
   // MARK: Time Saving
   
   func updateTimeLabel() {
-    
     var totalTimeString: String
     var timeInSeconds = 0.0
 
@@ -55,7 +60,8 @@ class TimerCell: UITableViewCell, UITextFieldDelegate {
   }
   
   func saveTime() {
-    if (timeEntity.running) {
+    if (timeEntity.running)
+    {
       timeEntity.startTime = NSDate()
     } else {
       self.updateTotalTime()
@@ -74,14 +80,15 @@ class TimerCell: UITableViewCell, UITextFieldDelegate {
   
   func setLabelUpdater() {
     if (timeEntity.running) {
-      timeLabelUpdater = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateTimeLabel"), userInfo: nil, repeats: true)
+      self.timeLabelUpdater = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("updateTimeLabel"), userInfo: nil, repeats: true)
     } else {
       self.cancelLabelUpdater()
     }
   }
-  
+
   func cancelLabelUpdater() {
     timeLabelUpdater.invalidate()
+    self.endEditing(true)
   }
 
   //  MARK: Time Converter
@@ -124,28 +131,44 @@ class TimerCell: UITableViewCell, UITextFieldDelegate {
       timeEntity.running = false
       timeEntity.totalTime = 0.0
       stopwatchButton.selected = false
+      TimeDataManager.sharedInstance.saveContext()
     }
   }
   
   func toggleRunning() {
-    timeEntity.running = !timeEntity.running
-    stopwatchButton.selected = timeEntity.running
-    self.saveTime()
+    self.runningToggled = true
+    NSNotificationCenter.defaultCenter().postNotificationName("RunningChanged", object: nil)
+  }
+  
+  dynamic func runningToggle(notifcation: NSNotification) {
+    if runningToggled {
+      self.timeEntity.running = !self.timeEntity.running
+      self.saveTime()
+      self.runningToggled = false
+    } else if self.timeEntity.running {
+      self.timeEntity.running = false
+      self.saveTime()
+    }
+    self.setLabelUpdater()
     TimeDataManager.sharedInstance.saveContext()
+    stopwatchButton.selected = timeEntity.running
   }
   
   @IBAction func timerButtonPressed(sender: AnyObject) {
+    self.endEditing(true)
     self.toggleRunning()
-    self.setLabelUpdater()
   }
 
   // MARK: Set up function
 
   func reflectCurrentState() {
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: "RunningChanged", object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "runningToggle:", name: "RunningChanged", object: nil)
     self.showSelectedState()
     self.updateTimeLabel()
     self.setLabelUpdater()
     self.showCurrentName()
+    self.taskNameLabel.addTarget(self, action: "textFieldDidChange", forControlEvents: UIControlEvents.EditingChanged)
   }
   
 }

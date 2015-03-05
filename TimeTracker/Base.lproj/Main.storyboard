@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="v1g-7L-mqL"/>
+                    <tabBarItem key="tabBarItem" title="Pie Chart" id="v1g-7L-mqL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LrC-BD-qDC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -27,102 +27,124 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ShB-bT-uAp">
             <objects>
-                <tabBarController id="fEw-4h-jMp" sceneMemberID="viewController">
+                <tabBarController id="fEw-4h-jMp" customClass="TabBarController" customModule="TimeTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="I31-dX-rdg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="1" green="0.16515338900000001" blue="0.1818815916" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="KV8-V4-wWU" kind="relationship" relationship="viewControllers" id="oGw-6y-RE1"/>
-                        <segue destination="IjN-AB-5Rl" kind="relationship" relationship="viewControllers" id="0Az-I1-Sj1"/>
+                        <segue destination="Wy4-zX-NKQ" kind="relationship" relationship="viewControllers" id="MKb-OX-dLd"/>
+                        <segue destination="IjN-AB-5Rl" kind="relationship" relationship="viewControllers" id="JUy-yW-Bao"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fg8-sh-6Nn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="199" y="324"/>
         </scene>
-        <!--View Timers-->
-        <scene sceneID="e38-Zf-6M3">
+        <!--Timers-->
+        <scene sceneID="hpT-Ir-SRC">
             <objects>
-                <tableViewController title="View Timers" id="KV8-V4-wWU" customClass="TimersTableViewController" customModule="TimeTracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="95" sectionHeaderHeight="50" sectionFooterHeight="22" id="ZbU-J8-2Wx">
+                <viewController id="Wy4-zX-NKQ" customClass="TimersViewController" customModule="TimeTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iCK-mp-Qht"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lhz-fR-dQc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hhH-7H-UqM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBW-Q8-gGv">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ofk-dM-Z1S"/>
+                                    <barButtonItem systemItem="add" id="ckg-Ol-8xR">
+                                        <color key="tintColor" red="1" green="0.16515338900000001" blue="0.1818815916" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="addTimer:" destination="Wy4-zX-NKQ" id="BiV-v8-YEp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="95" sectionHeaderHeight="50" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LYE-nD-8cf">
+                                <rect key="frame" x="0.0" y="44" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimerCell" rowHeight="95" id="Twm-01-weX" customClass="TimerCell" customModule="TimeTracker" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Twm-01-weX" id="QWF-DW-4xd">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Task Name!" textAlignment="center" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="uYc-GN-ezP">
+                                                    <rect key="frame" x="190" y="8" width="220" height="30"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YK-eZ-cGN">
+                                                    <rect key="frame" x="190" y="38" width="95" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGs-9X-K4l">
+                                                    <rect key="frame" x="364" y="33" width="46" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="46" id="kFc-I9-kgr"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="tintColor" red="1" green="0.16515338900000001" blue="0.1818815916" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Start">
+                                                        <color key="titleColor" red="1" green="0.16515338900000001" blue="0.1818815916" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" title="Stop"/>
+                                                    <connections>
+                                                        <action selector="timerButtonPressed:" destination="Twm-01-weX" eventType="touchDown" id="fFg-sq-NW9"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zGs-9X-K4l" firstAttribute="leading" secondItem="9YK-eZ-cGN" secondAttribute="trailing" constant="79" id="58w-a8-rB3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="uYc-GN-ezP" secondAttribute="trailing" constant="100" id="GTi-5L-0FM"/>
+                                                <constraint firstItem="9YK-eZ-cGN" firstAttribute="leading" secondItem="QWF-DW-4xd" secondAttribute="leadingMargin" constant="50" id="Il2-Kv-Ihe"/>
+                                                <constraint firstItem="9YK-eZ-cGN" firstAttribute="centerY" secondItem="zGs-9X-K4l" secondAttribute="centerY" id="J70-sl-FHV"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="9YK-eZ-cGN" secondAttribute="bottom" constant="10" id="bba-Q8-6AF"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="zGs-9X-K4l" secondAttribute="bottom" constant="10" id="nhs-cp-Oul"/>
+                                                <constraint firstItem="uYc-GN-ezP" firstAttribute="top" secondItem="QWF-DW-4xd" secondAttribute="topMargin" constant="10" id="q3z-69-yq5"/>
+                                                <constraint firstItem="uYc-GN-ezP" firstAttribute="leading" secondItem="QWF-DW-4xd" secondAttribute="leadingMargin" constant="100" id="rFT-sL-JWe"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="zGs-9X-K4l" secondAttribute="trailing" constant="50" id="yOR-sf-GEh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="stopwatchButton" destination="zGs-9X-K4l" id="60f-t9-FwP"/>
+                                            <outlet property="taskNameLabel" destination="uYc-GN-ezP" id="VWu-UI-g0V"/>
+                                            <outlet property="timerLabel" destination="9YK-eZ-cGN" id="sbt-KF-YcA"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="5dT-vE-4XA">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items>
-                                <barButtonItem systemItem="add" id="dYT-xd-fQs">
-                                    <color key="tintColor" red="1" green="0.16515338900000001" blue="0.1818815916" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="addTimer:" destination="KV8-V4-wWU" id="FFM-3D-cqC"/>
-                                    </connections>
-                                </barButtonItem>
-                            </items>
-                        </toolbar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimerCell" rowHeight="95" id="Rv3-G0-8st" customClass="TimerCell" customModule="TimeTracker" customModuleProvider="target">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rv3-G0-8st" id="QPa-EQ-TVt">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Task Name!" textAlignment="center" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Swn-en-NEp">
-                                            <rect key="frame" x="190" y="8" width="220" height="30"/>
-                                            <fontDescription key="fontDescription" name="Superclarendon-Light" family="Superclarendon" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
-                                        </textField>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAS-Xr-EPG">
-                                            <rect key="frame" x="190" y="38" width="95" height="21"/>
-                                            <fontDescription key="fontDescription" name="Superclarendon-Regular" family="Superclarendon" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUk-iZ-xZy">
-                                            <rect key="frame" x="364" y="33" width="46" height="30"/>
-                                            <fontDescription key="fontDescription" name="Superclarendon-Light" family="Superclarendon" pointSize="15"/>
-                                            <color key="tintColor" red="1" green="0.16515338900000001" blue="0.1818815916" alpha="1" colorSpace="calibratedRGB"/>
-                                            <state key="normal" title="Start">
-                                                <color key="titleColor" red="1" green="0.16515338896607201" blue="0.18188159159716732" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="selected" title="Stop"/>
-                                            <connections>
-                                                <action selector="timerButtonPressed:" destination="Rv3-G0-8st" eventType="touchDown" id="Edc-Yg-1Bu"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="HAS-Xr-EPG" firstAttribute="leading" secondItem="QPa-EQ-TVt" secondAttribute="leadingMargin" constant="50" id="9gi-5A-sdw"/>
-                                        <constraint firstItem="Swn-en-NEp" firstAttribute="top" secondItem="QPa-EQ-TVt" secondAttribute="topMargin" constant="10" id="F1e-hh-e96"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="FUk-iZ-xZy" secondAttribute="bottom" constant="10" id="FwP-4r-cOI"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="FUk-iZ-xZy" secondAttribute="trailing" constant="50" id="dcB-5f-HDC"/>
-                                        <constraint firstItem="Swn-en-NEp" firstAttribute="leading" secondItem="QPa-EQ-TVt" secondAttribute="leadingMargin" constant="100" id="mVL-xs-siN"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="HAS-Xr-EPG" secondAttribute="bottom" constant="10" id="qz4-U6-zoU"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Swn-en-NEp" secondAttribute="trailing" constant="100" id="xdt-Sw-P4o"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="stopwatchButton" destination="FUk-iZ-xZy" id="0Ds-3Z-N9V"/>
-                                    <outlet property="taskNameLabel" destination="Swn-en-NEp" id="cgO-DA-Hay"/>
-                                    <outlet property="timerLabel" destination="HAS-Xr-EPG" id="lY9-aV-M8J"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="KV8-V4-wWU" id="JTs-ss-5pO"/>
-                            <outlet property="delegate" destination="KV8-V4-wWU" id="RKJ-64-nCf"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="FlP-gX-Ftq"/>
-                    <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Cb-jk-aSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="mBW-Q8-gGv" firstAttribute="leading" secondItem="hhH-7H-UqM" secondAttribute="leading" id="9nt-AX-OdJ"/>
+                            <constraint firstItem="LYE-nD-8cf" firstAttribute="top" secondItem="mBW-Q8-gGv" secondAttribute="bottom" id="QmS-Cd-E2r"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="LYE-nD-8cf" secondAttribute="bottom" constant="-44" id="dDh-Mh-swC"/>
+                            <constraint firstItem="mBW-Q8-gGv" firstAttribute="top" secondItem="hhH-7H-UqM" secondAttribute="top" id="eLB-oD-YOE"/>
+                            <constraint firstItem="LYE-nD-8cf" firstAttribute="leading" secondItem="mBW-Q8-gGv" secondAttribute="leading" id="kT4-I1-u9N"/>
+                            <constraint firstItem="LYE-nD-8cf" firstAttribute="trailing" secondItem="mBW-Q8-gGv" secondAttribute="trailing" id="o9v-H1-s5y"/>
+                            <constraint firstAttribute="trailing" secondItem="mBW-Q8-gGv" secondAttribute="trailing" id="qOl-Y9-wwj"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Timers" id="kzB-UJ-aKy"/>
+                    <connections>
+                        <outlet property="tableView" destination="LYE-nD-8cf" id="Sd5-VN-LRd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l1A-sO-dTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="981" y="123"/>
+            <point key="canvasLocation" x="1005" y="-271"/>
         </scene>
     </scenes>
     <color key="tintColor" red="1" green="0.16515338900000001" blue="0.1818815916" alpha="1" colorSpace="calibratedRGB"/>

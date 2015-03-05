@@ -11,7 +11,8 @@ import WatchKit
 
 class InterfaceController: WKInterfaceController {
 
-  var taskNames:[String] = ["UGH", "Run", "Dancing"]
+  var taskNames:[String] = []
+  var running: [Bool] = []
   
   @IBOutlet var buttonTable: WKInterfaceTable!
   
@@ -41,12 +42,30 @@ class InterfaceController: WKInterfaceController {
     }
   }
   
+  func configureButtons(running:[Bool]) {
+    for i in 0..<self.buttonTable.numberOfRows {
+      var row = self.buttonTable.rowControllerAtIndex(i) as ButtonRowType
+      row.selected = running[i]
+      row.showSelectedState()
+    }
+  }
+  
+  
   func requestTaskData() {
     WKInterfaceController.openParentApplication(["tasknames":"requested"]) { (reply, error) -> Void in
       switch (reply?["time"] as? [String], error) {
       case let (data, nil) where data != nil:
         self.taskNames = data!
         self.configureTableWithData(self.taskNames)
+      case let (_, .Some(error)):
+        println("Error: \(error)")
+      default:
+        println("No error, no data.")
+      }
+      switch (reply?["running"] as? [Bool], error) {
+      case let (data, nil) where data != nil:
+        self.running = data!
+        self.configureButtons(self.running)
       case let (_, .Some(error)):
         println("Error: \(error)")
       default:

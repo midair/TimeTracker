@@ -16,6 +16,7 @@
                                     <group key="rootItem" width="1" alignment="left" id="shF-gj-mye">
                                         <items>
                                             <button width="1" alignment="left" title="Button" id="bFd-ve-FYr">
+                                                <fontDescription key="font" type="system" pointSize="15"/>
                                                 <connections>
                                                     <action selector="taskButtonPressed" destination="j2q-p2-Yyu" id="kah-yg-OQQ"/>
                                                 </connections>

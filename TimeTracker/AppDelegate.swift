@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+    window?.tintColor = UIColor.redColor()
     return true
   }
 
@@ -113,11 +114,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication!,
     handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]!,
     reply: (([NSObject : AnyObject]!) -> Void)!) {
-      var times:[String] = []
-      for time in TimeDataManager.sharedInstance.fetchTimes() {
-        times.append(time.taskName)
-      }
-      reply(["time":times])
+      var replyDictionary = WatchDataManager.sharedInstance.handleWatchRequest(userInfo)
+      reply(replyDictionary)
   }
 
 }
